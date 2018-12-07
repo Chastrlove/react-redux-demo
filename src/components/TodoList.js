@@ -7,7 +7,7 @@ class TodoList extends React.Component {
     const { todos } = this.props;
     return todos
       ? _.map(todos.byIds, item => {
-          return <div>{item.content}</div>;
+          return <div>{item.content || item}</div>;
         })
       : null;
   }

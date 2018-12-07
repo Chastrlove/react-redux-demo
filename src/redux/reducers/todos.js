@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO } from "../actionTypes";
+import { ADD_TODO, GET_TODO, TOGGLE_TODO } from "../actions/actionTypes";
 
 const initialState = {
   allIds: [],
@@ -31,6 +31,16 @@ export default function(state = initialState, action) {
             ...state.byIds[id],
             completed: !state.byIds[id].completed
           }
+        }
+      };
+    }
+    case GET_TODO: {
+      const { value } = action.payload;
+      return {
+        ...state,
+        byIds: {
+          ...state.byIds,
+          value
         }
       };
     }

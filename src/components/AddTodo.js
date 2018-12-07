@@ -1,6 +1,7 @@
 import React from "react";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { addTodo } from "../redux/actions";
+import * as all from "../redux/actions/actions";
 
 class AddTodo extends React.Component {
   constructor(props) {
@@ -17,6 +18,10 @@ class AddTodo extends React.Component {
     this.setState({ input: "" });
   };
 
+  getTodo=()=>{
+    this.props.getRemoteValue(123);
+  }
+
   render() {
     return (
       <div>
@@ -27,13 +32,20 @@ class AddTodo extends React.Component {
         <button className="add-todo" onClick={this.handleAddTodo}>
           Add Todo
         </button>
+        <button className="get-todo" onClick={this.getTodo}>
+          get Todo
+        </button>
       </div>
     );
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(all, dispatch);
+};
+
 export default connect(
   null,
-  { addTodo }
+  mapDispatchToProps
 )(AddTodo);
 // export default AddTodo;
